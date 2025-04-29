@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .forms import LoginForm
 from django.contrib.auth import authenticate, login # Aplicacion precargada para hacer autenticacion en Django
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 
 def user_login(request):
     if request.method == 'POST': # verifica el metodo de la peticion
@@ -22,3 +23,7 @@ def user_login(request):
     else: 
         form = LoginForm() # Si la peticion es GET devolvemos el formulario
     return render(request, 'account/login.html', {'form':form}) # return de la vista completa 
+
+@login_required
+def dashboard(request):
+    return render(request, 'account/dashboard.html', {'section':'dashboard'})
