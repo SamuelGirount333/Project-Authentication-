@@ -3,5 +3,10 @@
 
 {% block content %}
     <h1>Dashboard</h1>
-    <p>Inicio</p>
+    <p>Bienvenido 
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Cerrar sesion</button>
+        </form>
+    </p>
 {% endblock %}
